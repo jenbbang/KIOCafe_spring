@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cart">
+
+	<select id="cartOne" resultType="cart">
+		select * from kiocafe_cart where
+		dnum = #{dnum} and did = #{did}
+
+	</select>
+
+	<select id="selectOne" resultType="member">
+		select * from kiocafe_member
+		where id = #{id}
+	</select>
+
+	<select id="cartList" parameterType="map" resultType="cart">
+		select *
+		from kiocafe_cart where did = #{id} and dpay = 0
+	</select>
+
+	<select id="orderList" parameterType="map" resultType="cart">
+		select *
+		from kiocafe_cart where did = #{id} and dpay = 1
+	</select>
+
+
+	<delete id="cartDelete" parameterType="hashmap">
+		DELETE FROM kiocafe_cart
+		where did = #{userid}
+		and dnum IN
+		<foreach collection="didlist" item="item" index="index"
+			separator="," open="(" close=")">
+			#{item}
+		</foreach>
+	</delete>
+
+	<insert id="cartInsert" parameterType="cart">
+		insert into
+		kiocafe_cart
+		values
+		(#{dnum},#{dname},#{dprice},#{dqty},#{dtotal},#{dpicture},#{did},
+		#{dpay})
+	</insert>
+
+
+
+
+	<update id="cartUpdate1" parameterType="hashmap">
+		update kiocafe_cart set
+		dqty = #{dqty}, dtotal = #{dtotal}, dpay = 1
+		where
+		did =#{userid} and
+		dnum
+		=#{dnum}
+	</update>
+
+	<update id="cartUpdate2" parameterType="hashmap">
+		update kiocafe_cart set dpay = 2
+		where did =#{userid} and
+		<foreach collection="dnumlist" item="item" index="index"
+			separator=" or" open="" close=" ">
+			dnum = #{item}
+		</foreach>
+	</update>
+
+	<update id="cancleOrder" parameterType="hashmap">
+		update kiocafe_cart set dpay = 0
+		where did =#{userid} and
+		<foreach collection="dnums" item="item" index="index"
+			separator=" or" open="" close=" ">
+			dnum = #{item}
+		</foreach>
+	</update>
+
+	<!-- 카트 수량 수정 -->
+	<update id="modifyDqty" parameterType="hashmap">
+		update kiocafe_category
+		set
+		cqty = cqty - #{dqty}
+		where cnum = #{dnum}
+	</update>
+
+
+
+</mapper> 

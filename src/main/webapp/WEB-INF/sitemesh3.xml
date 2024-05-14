@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemesh>
+	<!-- WEB-INF/sitemesh3.xml -->
+	<mapping path="/member/*" decorator="/layout/layout.jsp" />
+	<mapping path="/category/*" decorator="/layout/layout.jsp" />
+	<mapping path="/cart/*" decorator="/layout/layout.jsp" />
+	<mapping path="/order/*" decorator="/layout/layout.jsp" />
+	<mapping path="/mainpage" decorator="/layout/layout.jsp" />
+
+
+	<mapping path="*/pictureimgForm" exclude="true" />
+	<mapping path="*/picturePro" exclude="true" />
+
+
+</sitemesh>

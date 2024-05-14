@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="member">
+	 <!-- id 속성 : 유일해야 함. sql 구문을 구별하는 유일한 이름. namespace가 다른 경우는 다른 sql 구문으로 
+		인식함. resultType : 결과를 전달하는 자료형을 지정. int : Integer model.Member : 컬럼명과 set프로퍼티의 
+		이름이 같은 경우 자동으로 설정함. #{value} : 파라미터로 전달된 값 + 자료형 판단. => 보안프로그래밍으로 권장 value의 
+		자료형이 문자열 : where id=#{value} => where id='admin' value의 자료형이 숫자 : where id=#{value} 
+		=> where id= 1 ${value} : 파라미터로 전달된 값 value의 자료형이 문자열 : where id=${value} 
+		=> where id=admin  -->
+	
+		
+		<insert id="insertMember" parameterType="member">
+		insert into kiocafe_member values (#{id},#{pass},#{name},#{tel},#{address},#{email},#{nickname},#{pass2})		
+		</insert>
+ 		
+		<select id="selectOne" resultType="member">
+		select * from kiocafe_member where id = #{id}
+		
+		</select>
+		
+		<update id="updateMember" parameterType="member">
+		update kiocafe_member set name=#{name}, tel=#{tel}, address=#{address}, email=#{email} where id=#{id}
+		</update>
+	
+		<delete id="deleteMember" >
+		delete from kiocafe_member where id=#{id}
+		</delete>
+		
+		
+		<update id="changePass" parameterType="string" >
+		update kiocafe_member set pass=#{pass} where id=#{id}
+		</update>
+		
+		<select id="memberList" resultType="member">
+		select * from kiocafe_member
+		</select>
+		
+		<select id="idCheck" parameterType="string">
+		select * from kiocafe_member where id=#{id}
+		</select>
+		
+</mapper>

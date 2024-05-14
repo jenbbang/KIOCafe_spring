@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="category">
+
+   <select id="categoryCount" parameterType="String" resultType="int">
+      select nvl(count(*),0) from kiocafe_category where cid = #{value}
+   </select>
+
+   <select id="categoryList" parameterType="map" resultType="category">
+      select * from
+      (select rownum rnum, a.* from (select * from kiocafe_category where cid = #{cid} ) a order by cnum desc)
+      where rnum between #{start} and #{end}      
+   </select>
+   
+    <select id="menuList" parameterType="map" resultType="category">
+      select * from kiocafe_category where cmenu = #{cmenu} order by cnum desc    
+   </select>
+   
+   
+   <insert id="insertCategory" parameterType="category">
+      insert into kiocafe_category values
+      (#{cnum},#{cname},#{cmenu},#{ctext},#{cprice},#{cqty},#{cpicture}, #{cid})        
+   </insert>
+ 
+   
+   <select id="categoryOne" parameterType="int" resultType="category">
+      select * from kiocafe_category where cnum=#{cnum}
+   </select>
+
+   
+   	<select id="categoryQtySelectOne" resultType="String">
+		select cqty from kiocafe_category
+		 where
+			cnum = #{dnum}
+	</select>
+	
+	
+   <update id="categoryUpdate" parameterType="category">
+
+update kiocafe_category set cname = #{cname} , cmenu = #{cmenu} , 
+ 	   ctext = #{ctext} , cprice = #{cprice}, cqty = #{cqty} ,  cpicture = #{cpicture} 
+  	 where cnum = #{cnum}  
+</update>
+
+   <delete id="categoryDelete" parameterType="int">
+   delete from kiocafe_category where cnum= #{cnum}   
+   </delete> 
+
+</mapper>
