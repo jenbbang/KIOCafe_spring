@@ -31,20 +31,11 @@ KIOBakery Cafe는 작은 카페의 메뉴를 소개하고 주문을 온라인으
 ![Java](https://img.shields.io/badge/Language-Java-007396?style=flat-square&logo=java&logoColor=white)
 ![Oracle](https://img.shields.io/badge/Database-Oracle-F80000?style=flat-square&logo=oracle&logoColor=white)
 
-
-## 아키텍처
-프로젝트의 전체 구조와 구성 요소 간의 상호작용을 나타내는 아키텍처 다이어그램입니다.
-<p align="left">
-<!-- 아키텍처 다이어그램 이미지 추가 -->
-</p>
-
 ## ERD (Entity-Relationship Diagram)
-<details>
-<summary>데이터베이스 테이블과 그 관계를 보여주는 ERD입니다.</summary>
 <p align="left">
 <img src="https://postfiles.pstatic.net/MjAyNDA3MzFfOTYg/MDAxNzIyMzk1MDQxMzUw.T_8-bDg9PlYVzPD1CVHzL3XmBljhjEd5b1oZ3ROGAGEg.Fvz1RV12K2FC7Q1G1kw-c1jt4PNs_lMvZuAatt3DyZMg.PNG/2569e0c9-7834-43f6-b0ef-c511b625b983.png?type=w773">
 </p>
-</details>
+
 
 
 ## 📄 프로젝트 하이라이트
